@@ -1,5 +1,3 @@
-# PROJECT 4 README <!-- omit in toc -->
-
 - [Overview](#overview)
 - [MVP](#mvp)
   - [Goals](#goals)
