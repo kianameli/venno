@@ -1,5 +1,3 @@
-# PROJECT 4 README <!-- omit in toc -->
-
 - [Overview](#overview)
 - [MVP](#mvp)
   - [Goals](#goals)
@@ -88,8 +86,6 @@ The **Project Title** MVP will allow users to create and access an account, star
 
 #### Component Architecture
 
-> Use this section to define your React components and the data architecture of your app. This should be a reflection of how you expect your directory/file tree to look like.
-
 ```structure
 
 src
@@ -97,10 +93,26 @@ src
       |__ fonts
       |__ graphics
       |__ images
-      |__ mockups
+|__ layouts/
+      |__ Layout.jsx
 |__ components/
-      |__ Header.jsx
+      |__ Ledgers.jsx
+      |__ LedgerDetail.jsx
+      |__ TxnCard.jsx
+|__ screens/
+      |__ MainLanding.jsx
+      |__ UserLanding.jsx
+      |__ SignIn.jsx
+      |__ SignUp.jsx
+      |__ NewTxn.jsx
+      |__ FindFriend.jsx
+|__ utils/
+      |__ searchFriends.jsx
 |__ services/
+      |__ api-config.jsx
+      |__ auth.jsx
+      |__ ledgers.jsx
+      |__ txns.jsx
 
 ```
 
