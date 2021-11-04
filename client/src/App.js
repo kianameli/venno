@@ -9,7 +9,6 @@ import MainContainer from './containers/MainContainer';
 
 function App() {
   const [user, setUser] = useState(null)
-  const [ledgers, setLedgers] = useState([])
   const history = useHistory()
   
   useEffect(() => {
@@ -50,7 +49,7 @@ function App() {
             <SignUp handleSignUp={handleSignUp} />
           </Route>
           <Route path='/'>
-            <MainContainer />
+            <MainContainer user={user}/>
           </Route>
         </Switch>
       </Layout>
