@@ -13,6 +13,7 @@ import { getUserTxns } from '../services/transactions';
 export default function MainContainer(props) {
 
   const { user } = props
+  const [allUsers, setAllUsers] = useState([])
   const [ledgers, setLedgers] = useState([])
   const [txns, setTxns] = useState([])
 
@@ -32,6 +33,14 @@ export default function MainContainer(props) {
     fetchTxns()
   },[])
 
+  useEffect(() => {
+    const fetchAllUsers = async () => {
+      const users = await getUsers()
+      setAllUsers(users)
+    }
+    fetchAllUsers()
+  },[])
+
 
 
   return (
@@ -40,10 +49,10 @@ export default function MainContainer(props) {
         <Home />
       </Route>
       <Route path='/landing'>
-        <UserLanding ledgers={ledgers} txns={txns} user={user}/>
+        <UserLanding ledgers={ledgers} txns={txns} user={user} allUsers={allUsers}/>
       </Route>
       <Route path='/find-friend'>
-        <FindFriend />
+        <FindFriend user={user} allUsers={allUsers}/>
       </Route>
       <Route path='/new-transaction'>
         <NewTransaction />
