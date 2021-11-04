@@ -26,7 +26,7 @@ class LedgersController < ApplicationController
 
   # PATCH/PUT /ledgers/1
   def update
-    if @ledger.update(ledger_params)
+    if @ledger.update_attribute(:settled, true)
       render json: @ledger
     else
       render json: @ledger.errors, status: :unprocessable_entity
