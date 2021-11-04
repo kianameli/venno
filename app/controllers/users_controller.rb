@@ -5,7 +5,6 @@ class UsersController < ApplicationController
       @user = User.new(user_params)
   
       if @user.save
-        Account.create!(user_id: @user.id, balance: 0.00)
         @token = encode({ id: @user.id })
         render json: {
           user: @user.attributes.except('password_digest'),
