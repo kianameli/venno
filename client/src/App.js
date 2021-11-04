@@ -3,7 +3,9 @@ import { useState, useEffect } from 'react';
 import {Switch, Route, useHistory} from 'react-router-dom'
 import Layout from './layouts/Layout';
 import SignIn from './screens/SignIn'
+import SignUp from './screens/SignUp'
 import { verifyUser, loginUser, registerUser, removeToken } from './services/auth'
+import MainContainer from './containers/MainContainer';
 
 function App() {
   const [user, setUser] = useState(null)
@@ -16,18 +18,18 @@ function App() {
       setUser(userData);
     };
     handleVerify();
-  }, [user]);
+  }, []);
 
   const handleSignIn = async (formData) => {
     const userData = await loginUser(formData);
     setUser(userData);
-    history.push('/');
+    history.push('/landing');
   };
 
   const handleSignUp = async (formData) => {
     const userData = await registerUser(formData);
     setUser(userData);
-    history.push('/');
+    history.push('/landing');
   };
 
   const handleSignOut = () => {
@@ -38,28 +40,18 @@ function App() {
 
   return (
     <div className="App">
-      <Layout>
+      <Layout user={user} handleSignOut={handleSignOut}>
         <h2>{user ? user.username : "no user"}</h2>
         <Switch>
-          <Route exact path='/'>
-            HOME
-          </Route>
           <Route path='/sign-in'>
             <SignIn handleSignIn={handleSignIn} />
           </Route>
           <Route path='/sign-up'>
-            SIGN UP
+            <SignUp handleSignUp={handleSignUp} />
           </Route>
-          <Route path='/landing'>
-            LANDING
+          <Route path='/'>
+            <MainContainer />
           </Route>
-          <Route path='/find-friend'>
-            LANDING
-          </Route>
-          <Route path='/new-transaction'>
-            LANDING
-          </Route>
-
         </Switch>
       </Layout>
     </div>

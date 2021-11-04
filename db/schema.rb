@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_03_181513) do
+ActiveRecord::Schema.define(version: 2021_11_04_150458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2021_11_03_181513) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.decimal "balance", default: "0.0"
+    t.decimal "balance", precision: 7, scale: 2, default: "0.0"
   end
 
   add_foreign_key "ledgers", "users", column: "user1_id"

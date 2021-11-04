@@ -10,7 +10,7 @@ User.destroy_all
 Ledger.destroy_all
 Transaction.destroy_all
 
-@user1 = User.create!(username: 'test1', password: '123456', email: 'test1@email.com')
+@user1 = User.create!(username: 'test1', password: '123456', email: 'test1@email.com', balance: 500.25)
 @user2 = User.create!(username: 'test2', password: '123456', email: 'test2@email.com')
 @user3 = User.create!(username: 'test3', password: '123456', email: 'test3@email.com')
 puts "#{User.count} users created"
