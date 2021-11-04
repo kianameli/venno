@@ -9,6 +9,7 @@ import FindFriend from '../screens/FindFriend'
 import NewTransaction from '../screens/NewTransaction'
 import { getUserLedgers } from '../services/ledgers';
 import { getUserTxns } from '../services/transactions';
+import { getUsers } from '../services/users';
 
 export default function MainContainer(props) {
 
