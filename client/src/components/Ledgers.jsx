@@ -3,15 +3,11 @@ import { getUserTxns } from '../services/transactions'
 
 export default function Ledgers(props) {
   const {ledgers, txns, user, allUsers, selectedLedger, setSelectedLedger} = props
-  
-  const handleSelect = (ledgerId) => {
-    setSelectedLedger(ledgers.find(ledger => ledger.id===ledgerId))
-  }
 
   //returns the sum of txn amount where user is payer or is payee
   function getTxnsAndTotal(ledgerTxns, otherUserId, isUserPayer) {
     let filteredTxns = ledgerTxns.filter(txn => {
-      return (isUserPayer
+      return ( isUserPayer
         ? user?.id === txn.payer_id && otherUserId === txn.payee_id
         : user?.id === txn.payee_id && otherUserId === txn.payer_id
       )
@@ -44,22 +40,14 @@ export default function Ledgers(props) {
               value={ledger.id}
               onClick={(e) => {
                 e.preventDefault()
-                handleSelect(e.target.value)
+                //handleSelect(e.target.value)
+                setSelectedLedger(ledger)
               }}
             >Select</button>
           </div>
         )
       })}
 
-      <div>
-        {txns.map(txn => {
-          return (
-          <div>
-            {txn.amount}
-          </div>
-        )
-      })}
-      </div>
     </div>
   )
 }

@@ -7,9 +7,9 @@ import Home from '../screens/Home'
 import UserLanding from '../screens/UserLanding'
 import FindFriend from '../screens/FindFriend'
 import NewTransaction from '../screens/NewTransaction'
-import { getUserLedgers } from '../services/ledgers';
-import { getUserTxns } from '../services/transactions';
-import { getUsers } from '../services/users';
+import { getUserLedgers } from '../services/ledgers'
+import { getUserTxns } from '../services/transactions'
+import { getUsers } from '../services/users'
 
 export default function MainContainer(props) {
 
@@ -25,7 +25,7 @@ export default function MainContainer(props) {
       setLedgers(userLedgers)
     }
     fetchLedgers()
-  },[])
+  },[user])
 
   useEffect(() => {
     const fetchTxns = async () => {
