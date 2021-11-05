@@ -17,6 +17,7 @@ export default function MainContainer(props) {
   const [allUsers, setAllUsers] = useState([])
   const [ledgers, setLedgers] = useState([])
   const [txns, setTxns] = useState([])
+  const [ selectedLedger, setSelectedLedger] = useState(null)
 
   useEffect( () => {
     const fetchLedgers = async () => {
@@ -28,8 +29,8 @@ export default function MainContainer(props) {
 
   useEffect(() => {
     const fetchTxns = async () => {
-      const userTxns = await getUserTxns(user?.id)
-      setTxns(userTxns)
+      const userTxns = await getUserTxns();
+      setTxns(userTxns);
     }
     fetchTxns()
   },[])
@@ -50,12 +51,18 @@ export default function MainContainer(props) {
         <Home />
       </Route>
       <Route path='/landing'>
-        <UserLanding ledgers={ledgers} txns={txns} user={user} allUsers={allUsers}/>
+        <UserLanding
+          ledgers={ledgers} setLedgers={setLedgers}
+          txns={txns}
+          user={user}
+          allUsers={allUsers}
+          selectedLedger={ selectedLedger } setSelectedLedger={ setSelectedLedger }
+        />
       </Route>
       <Route path='/find-friend'>
         <FindFriend user={user} allUsers={allUsers}/>
       </Route>
-      <Route path='/new-transaction'>
+      <Route path='/new-transaction/:id'> 
         <NewTransaction />
       </Route>
       

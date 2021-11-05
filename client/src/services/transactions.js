@@ -1,6 +1,6 @@
 import api from './api-config'
 
-export const getUserTxns = async (userId) => {
+export const getUserTxns = async () => {
   try {
     const res = await api.get('/transactions')
     return res.data

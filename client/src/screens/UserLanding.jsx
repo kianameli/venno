@@ -3,8 +3,7 @@ import Ledgers from '../components/Ledgers'
 import LedgerDetail from '../components/LedgerDetail'
 
 export default function UserLanding(props) {
-  const { user, txns, ledgers } = props
-  const [selectedLedger, setSelectedLedger] = useState(null)
+  const { ledgers, setLedgers, txns, user, allUsers, selectedLedger, setSelectedLedger } = props
 
 
   return (
@@ -12,6 +11,11 @@ export default function UserLanding(props) {
       
       <Ledgers
         ledgers={ledgers}
+        setLedgers={setLedgers}
+        txns={txns}
+        user={user}
+        allUsers={allUsers}
+        selectedLedger={selectedLedger}
         setSelectedLedger={setSelectedLedger}
       />
       {selectedLedger ? <LedgerDetail ledger={selectedLedger} />
