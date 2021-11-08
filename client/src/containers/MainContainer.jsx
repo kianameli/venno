@@ -7,6 +7,7 @@ import Home from '../screens/Home'
 import UserLanding from '../screens/UserLanding'
 import FindFriend from '../screens/FindFriend'
 import NewTransaction from '../screens/NewTransaction'
+import EditTransaction from '../screens/EditTransaction';
 import { getUserLedgers } from '../services/ledgers'
 import { getUserTxns } from '../services/transactions'
 import { getUsers } from '../services/users'
@@ -17,6 +18,7 @@ export default function MainContainer(props) {
   const [allUsers, setAllUsers] = useState([])
   const [ledgers, setLedgers] = useState([])
   const [txns, setTxns] = useState([])
+  const [update, setUpdate] = useState(false)
   const [ selectedLedger, setSelectedLedger] = useState(null)
 
   useEffect( () => {
@@ -25,7 +27,7 @@ export default function MainContainer(props) {
       setLedgers(userLedgers)
     }
     fetchLedgers()
-  },[user])
+  },[update])
 
   useEffect(() => {
     const fetchTxns = async () => {
@@ -33,7 +35,7 @@ export default function MainContainer(props) {
       setTxns(userTxns);
     }
     fetchTxns()
-  },[])
+  },[update])
 
   useEffect(() => {
     const fetchAllUsers = async () => {
@@ -41,9 +43,7 @@ export default function MainContainer(props) {
       setAllUsers(users)
     }
     fetchAllUsers()
-  },[])
-
-
+  },[update])
 
   return (
     <Switch>
@@ -53,17 +53,29 @@ export default function MainContainer(props) {
       <Route path='/landing'>
         <UserLanding
           ledgers={ledgers} setLedgers={setLedgers}
-          txns={txns}
+          txns={txns} setTxns={setTxns}
           user={user}
           allUsers={allUsers}
+          update={update} setUpdate={setUpdate}
           selectedLedger={ selectedLedger } setSelectedLedger={ setSelectedLedger }
         />
       </Route>
       <Route path='/find-friend'>
-        <FindFriend user={user} allUsers={allUsers}/>
+        <FindFriend user={user} allUsers={allUsers} ledgers={ledgers} update={update} setUpdate={setUpdate}/>
       </Route>
       <Route path='/new-transaction/:id'> 
-        <NewTransaction />
+        <NewTransaction user={user} allUsers={allUsers}
+          selectedLedger={selectedLedger}
+          txns={txns} setTxns={setTxns}
+          update={update} setUpdate={setUpdate}
+        />
+      </Route>
+      <Route path='/edit-transaction/:id'>
+        <EditTransaction user={user} allUsers={allUsers}
+          selectedLedger={selectedLedger}
+          txns={txns} setTxns={setTxns}
+          update={update} setUpdate={setUpdate}
+        />
       </Route>
       
     </Switch>

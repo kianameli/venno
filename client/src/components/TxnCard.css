@@ -1,0 +1,35 @@
+.txn-card-red, .txn-card-green {
+  width: 25vw;
+  height: 5vh;
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 5px;
+  padding: 10px;
+  
+}
+.txn-card-red {
+  border: 2px solid #fb7e7e
+}
+.txn-card-green {
+  border: 2px solid #5fe174
+}
+.top-row {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+.bottom-row {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-left: 1vw;
+  margin-top: 1vh;
+}
+.reason {
+  position: inherit;
+  justify-self: left;
+}
+.buttons {
+  display: flex;
+  flex-flow: column;
+}

@@ -10,7 +10,12 @@ export const getUserLedgers = async (userId=null) => {
 }
 
 export const postLedger = async (ledgerData) => {
-  
+  try {
+    const res = await api.post('/ledgers', { ledger: ledgerData})
+    return res.data
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 

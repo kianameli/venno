@@ -1,0 +1,24 @@
+.header {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+h1 {
+  text-align: left;
+}
+.title {
+  margin-left: 5%;
+}
+.options {
+  margin-right: 5%;
+  display: flex;
+  flex-flow: row;
+  align-self: center;
+}
+
+.sign-link {
+  align-self: center;
+  padding-left: 35px;
+  text-decoration: none;
+  color: black;
+}
