@@ -40,7 +40,6 @@ function App() {
   return (
     <div className="App">
       <Layout user={user} handleSignOut={handleSignOut}>
-        <h2>{user ? user.username : "no user"}</h2>
         <Switch>
           <Route path='/sign-in'>
             <SignIn handleSignIn={handleSignIn} />

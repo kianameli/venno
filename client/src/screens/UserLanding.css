@@ -1,0 +1,43 @@
+.user-landing {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+}
+.ledgers {
+  min-width: 20%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+}
+.selected {
+  margin-left: 5%;
+  transform: scale(1.2);
+  border: solid 2px grey
+}
+.ledger-card-green, .ledger-card-red {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.ledger-card-green {
+  background-color: #5fe174;
+}
+
+.ledger-card-red {
+  background-color: #fb7e7e;
+}
+.link-find-friend {
+  background-color: #4dabee;
+  cursor: pointer;
+  margin-top: 5px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+}
+
+
+
