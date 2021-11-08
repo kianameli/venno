@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import { getTxn, getUserTxns, updateTxn } from '../services/transactions'
-import { Redirect, useParams } from 'react-router'
+import { Redirect, useHistory, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
+import './EditTransaction.css'
 
 export default function EditTransaction(props) {
   const { user, allUsers, selectedLedger, txns, setTxns, update, setUpdate } = props
+  const history = useHistory()
   const [otherUser, setOtherUser] = useState([])
-  const [updatedTxn, setUpdatedTxn] = useState(false)
+  // const [updatedTxn, setUpdatedTxn] = useState(false)
   const [txnData, setTxnData] = useState({
     ledger_id: selectedLedger?.id,
     originator_id: user?.id,
@@ -36,18 +38,25 @@ export default function EditTransaction(props) {
   
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const updatedTxn = await updateTxn(id,txnData)
-    setUpdatedTxn(updatedTxn)
+    const updatedTxn = await updateTxn(id, txnData)
+    setTxns(prev => {
+      return prev.map(prevTxn => {
+        return (prevTxn.id===id ? updatedTxn : prevTxn)
+      })
+    })
+    // setUpdatedTxn(updatedTxn)
     setUpdate(prev=>!prev)
+    history.push('/landing')
   }
 
-  if (updatedTxn) {
-    return (<Redirect to={'/landing'} />)
-  }
+  // if (updatedTxn) {
+  //   return (<Redirect to={'/landing'} />)
+  // }
 
   return (
     <div className='new-txn'>
-      <Link to='/landing'>Back</Link>
+      <Link className='back-button' to='/landing'>&lt; Back</Link>
+      <h3>Edit transaction</h3>
       <form onSubmit={handleSubmit}>
         <label>
           Amount:

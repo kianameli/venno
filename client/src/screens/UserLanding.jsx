@@ -1,10 +1,15 @@
 import LedgerDetail from '../components/LedgerDetail'
 import './UserLanding.css'
 import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { getUserTxns } from '../services/transactions'
 
 export default function UserLanding(props) {
   const { ledgers, setLedgers, txns, setTxns, user, allUsers, selectedLedger, setSelectedLedger, update, setUpdate } = props
 
+  useEffect(() => {
+    console.log('landing effect run')
+  },[])
   //get user id and name for other user on ledger
   function getOtherUser(ledger) {
     let otherUserId = ledger.user1_id === user?.id ? ledger.user2_id : ledger.user1_id
@@ -33,6 +38,12 @@ export default function UserLanding(props) {
       : 0.0
   }
 
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+  })
+
   return (
     !ledgers
       ? <p>Loading...</p>
@@ -58,19 +69,14 @@ export default function UserLanding(props) {
                 >
                   <div className={isGreen ? 'ledger-card-green' : 'ledger-card-red'}>
                     <p className='other-user-name'>{otherUser ? otherUser[1]:''}</p>
-                    <p className='ledger-total'>{isGreen ? `$${userTotal}` : `($${Math.abs(userTotal)})`}</p>
+                    <p className='ledger-total'>{isGreen ? `${formatter.format(userTotal)}` : `(${formatter.format(Math.abs(userTotal))})`}</p>
                   </div>
-                  {/* <button
-                    value={ledger.id}
-                    onClick={(e) => {
-                      e.preventDefault()
-                      setSelectedLedger(ledger)
-                    }}
-                  >Select</button> */}
                 </div>
               )
             })}
-            <Link to='/find-friend'>Find a friend</Link>
+          <Link className='link-find-friend' to='/find-friend'>
+            Find a friend
+          </Link>
           </div>
         <div className='selected-ledger'>
           {!selectedLedger

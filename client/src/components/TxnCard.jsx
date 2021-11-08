@@ -13,6 +13,12 @@ export default function TxnCard(props) {
     setUpdate(prev=>!prev)
   }
 
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+  })
+
   let originator = txn.originator_id === user.id
     ? 'You'
     : otherUser[1]
@@ -33,13 +39,13 @@ export default function TxnCard(props) {
       <div className={userPaid ? 'txn-card-red':'txn-card-green'}>
         <div className='top-row'>
           <div className='msg'>{originator} {verb} {receiver} </div>
-          <div className='amount'> {userPaid ? `($${txn.amount})`:`$${txn.amount}`} </div>
+          <div className='amount'> {userPaid ? `(${formatter.format(txn.amount)})`:`${formatter.format(txn.amount)}`} </div>
         </div>
         <div className='bottom-row'>
           <div className='reason'>{txn.reason}</div>
           <div className='buttons'>
-            <Link to={`/edit-transaction/${txn.id}`}>Edit</Link>
-            <Link to='/landing' onClick={handleDelete}>Delete</Link>
+            <Link className='link-txn-card-edit' to={`/edit-transaction/${txn.id}`}>Edit</Link>
+            <Link className='link-txn-card-delete' to='/landing' onClick={handleDelete}>X</Link>
           </div>
         </div>
       </div>

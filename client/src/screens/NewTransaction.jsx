@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { postTxn } from '../services/transactions'
-import { Redirect} from 'react-router'
+import { Redirect } from 'react-router'
+import './NewTransaction.css'
+import { Link } from 'react-router-dom'
 
 export default function NewTransaction(props) {
   const { user, allUsers, selectedLedger, txns, setTxns, update, setUpdate } = props
@@ -25,14 +27,13 @@ export default function NewTransaction(props) {
   }
 
   useEffect(() => {
-    let otherUserId = selectedLedger.user1_id === user?.id ? selectedLedger.user2_id : selectedLedger.user1_id
+    let otherUserId = selectedLedger?.user1_id === user?.id ? selectedLedger?.user2_id : selectedLedger?.user1_id
     setOtherUser(prev=>allUsers?.find(aUser => aUser[0] === otherUserId))
-  }, [])
+  }, [otherUser])
   
   const handleSubmit = async (e) => {
-    e.preventDefault()
     const newTxn = await postTxn(txnData)
-    setNewTxn(newTxn)
+    setNewTxn(prev=>true)
     setUpdate(prev=>!prev)
   }
 
@@ -42,8 +43,8 @@ export default function NewTransaction(props) {
 
   return (
     <div className='new-txn'>
-      NEW TXN
-      {selectedLedger?.id}
+      <Link className='back-button' to='/landing'>&lt; Back</Link>
+      <h3>New Transaction with {otherUser[1]}</h3>
       <form onSubmit={handleSubmit}>
         <label>
           Amount:

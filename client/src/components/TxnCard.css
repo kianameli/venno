@@ -1,6 +1,6 @@
 .txn-card-red, .txn-card-green {
   width: 25vw;
-  height: 5vh;
+  height:fit-content;
   display: flex;
   flex-flow: column nowrap;
   margin: 5px;
@@ -26,10 +26,25 @@
   margin-top: 1vh;
 }
 .reason {
+  margin-top: 2%;
   position: inherit;
   justify-self: left;
 }
 .buttons {
   display: flex;
-  flex-flow: column;
+  flex-flow: row;
+  gap: 10px
+}
+.link-txn-card-edit, .link-txn-card-delete {
+  background-color: #4dabee;
+  margin-bottom: 5px;
+  padding: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  font-size: small;
+}
+.link-txn-card-delete {
+  background-color: #fb7e7e;
+  font-weight: bold;
 }

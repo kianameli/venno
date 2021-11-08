@@ -1,18 +1,16 @@
 .user-landing {
-  border: solid 2px blue;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-evenly;
 }
 .ledgers {
   min-width: 20%;
-  border: solid 2px pink;
   display: flex;
   flex-flow: column nowrap;
-  align-items: left;
-  justify-items: left;
+  align-items: stretch;
 }
 .selected {
+  margin-left: 5%;
   transform: scale(1.2);
   border: solid 2px grey
 }
@@ -31,3 +29,15 @@
 .ledger-card-red {
   background-color: #fb7e7e;
 }
+.link-find-friend {
+  background-color: #4dabee;
+  cursor: pointer;
+  margin-top: 5px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+}
+
+
+

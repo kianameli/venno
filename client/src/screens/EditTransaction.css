@@ -1,0 +1,9 @@
+.back-button {
+  align-self: flex-start;
+  margin-left: 10%;
+  text-decoration: none;
+  background-color: #4dabee;
+  color: white;
+  padding: 5px;
+  font-weight: bold;
+}

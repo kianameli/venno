@@ -1,0 +1,9 @@
+.new-txn {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+select {
+  margin-top: 10px;
+}
+

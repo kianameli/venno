@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import TxnCard from './TxnCard'
+import './LedgerDetail.css'
 
 export default function LedgerDetail(props) {
-
+  const [allTxns, setAllTxns] = useState([])
   const { ledger, txns, user, allUsers, update, setUpdate } = props
 
+  useEffect(() => {
+    setAllTxns(txns)
+  },[txns, update])
   //get user id and name for other user on ledger
   function getOtherUser(ledger) {
     let otherUserId = ledger.user1_id === user?.id ? ledger.user2_id : ledger.user1_id
-    console.log(allUsers)
     return allUsers?.find(aUser => aUser[0] === otherUserId)
   }
   //get all txns for a ledger
@@ -37,6 +40,12 @@ export default function LedgerDetail(props) {
       : 0.0
   }
 
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+  })
+
   let otherUser=getOtherUser(ledger)
   //get all txns for this ledger
   let ledgerTxns = getLedgerTxns(ledger)
@@ -46,22 +55,21 @@ export default function LedgerDetail(props) {
 
   return (
 
-    <div>
+    <div className='ledger-detail'>
       <div className={isGreen ? 'ledger-card-green' : 'ledger-card-red'}>
         <p className='other-user-name'>{otherUser ? otherUser[1]:''}</p>
-        <p className='ledger-total'>{isGreen ? `$${userTotal}` : `($${Math.abs(userTotal)})`}</p>
+        <p className='ledger-total'>{isGreen ? `${formatter.format(userTotal)}` : `(${formatter.format(Math.abs(userTotal))})`}</p>
       </div>
       <div>
         {ledgerTxns.length === 0
           ? <p>...</p>
           : ledgerTxns.map(txn => {
-            return (
-              <TxnCard txn={txn} user={user} otherUser={otherUser} update={update} setUpdate={setUpdate}/>
-
-            )
+            return (<TxnCard txn={txn} user={user} otherUser={otherUser} update={update} setUpdate={setUpdate}/>)
           })}
       </div>
-      <Link to={`/new-transaction/${ledger.id}`}>New transaction</Link>
+      <Link className='link-button-new-txn' to={`/new-transaction/${ledger.id}`}>
+        New transaction
+      </Link>
     </div>
   )
 }

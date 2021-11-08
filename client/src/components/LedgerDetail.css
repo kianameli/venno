@@ -1,0 +1,14 @@
+.ledger-detail {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+}
+.link-button-new-txn {
+  background-color: #4dabee;
+  cursor: pointer;
+  margin-top: 5px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+}

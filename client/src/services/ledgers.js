@@ -1,6 +1,6 @@
 import api from './api-config'
 
-export const getUserLedgers = async (userId=null) => {
+export const getUserLedgers = async (userId) => {
   try {
     const res = await api.get('/ledgers')
     return userId ? res.data.filter(ledger => ledger.user1_id===userId || ledger.user2_id===userId) : res.data

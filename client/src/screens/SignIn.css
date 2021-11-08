@@ -1,0 +1,41 @@
+.sign-in-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+.left-side, .right-side {
+  align-self: center;
+  max-width: 35%;
+}
+.link-create {
+  text-decoration: none;
+  color: blue;
+}
+.right-side {
+  border: solid 1px grey;
+  padding: 5%;
+}
+
+label, input {
+  display: block;
+  width: 25vw;
+}
+label {
+  text-align: left;
+  font-size: smaller;
+}
+input {
+  border: none;
+  background: #c4c4c4;
+  padding: 10px;
+}
+button {
+  border: none;
+  margin-top: 20px;
+  background-color: #4dabee;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+
+}

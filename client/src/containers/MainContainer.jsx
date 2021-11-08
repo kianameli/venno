@@ -27,7 +27,7 @@ export default function MainContainer(props) {
       setLedgers(userLedgers)
     }
     fetchLedgers()
-  },[update])
+  },[user,update])
 
   useEffect(() => {
     const fetchTxns = async () => {
@@ -35,7 +35,7 @@ export default function MainContainer(props) {
       setTxns(userTxns);
     }
     fetchTxns()
-  },[update])
+  },[user, update])
 
   useEffect(() => {
     const fetchAllUsers = async () => {
@@ -43,7 +43,7 @@ export default function MainContainer(props) {
       setAllUsers(users)
     }
     fetchAllUsers()
-  },[update])
+  },[])
 
   return (
     <Switch>
